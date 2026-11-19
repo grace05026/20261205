@@ -4,20 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Luka &amp; Grace · 婚禮座位查詢</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Italiana&family=Noto+Serif+TC:wght@400;600;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Lora:wght@500;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#eee9de;--card:#faf8f2;--ink:#2a2622;--soft:#7a7266;--line:#ddd4c4;--wax:#8c2536;--wax2:#b23a4d;--gold:#a8823a;--paper:#fffdf8;--env:#e8dfcd;--env2:#d9cdb7}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a17;--card:#1b2622;--ink:#eef0ea;--soft:#9fb0a7;--line:#2c3a35;--wax:#b23a4d;--wax2:#d4566a;--gold:#d3ad63;--paper:#f6f1e4;--env:#2b3a34;--env2:#22302b}}
 :root[data-theme="dark"]{--bg:#121a17;--card:#1b2622;--ink:#eef0ea;--soft:#9fb0a7;--line:#2c3a35;--wax:#b23a4d;--wax2:#d4566a;--gold:#d3ad63;--paper:#f6f1e4;--env:#2b3a34;--env2:#22302b}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:linear-gradient(115deg,transparent 0 22%,rgba(255,255,255,.35) 30%,transparent 42% 60%,rgba(120,100,70,.07) 72%,transparent 85%),radial-gradient(ellipse at 15% 0%,rgba(255,255,255,.5),transparent 55%),radial-gradient(ellipse at 90% 18%,rgba(150,125,85,.12),transparent 50%),var(--bg);background-attachment:fixed;color:var(--ink);font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;line-height:1.8;padding:calc(env(safe-area-inset-top,0px) + 28px) 18px calc(env(safe-area-inset-bottom,0px) + 40px);min-height:100vh}
+body{margin:0;background:linear-gradient(115deg,transparent 0 22%,rgba(255,255,255,.35) 30%,transparent 42% 60%,rgba(120,100,70,.07) 72%,transparent 85%),radial-gradient(ellipse at 15% 0%,rgba(255,255,255,.5),transparent 55%),radial-gradient(ellipse at 90% 18%,rgba(150,125,85,.12),transparent 50%),var(--bg);background-attachment:fixed;color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.75;padding:calc(env(safe-area-inset-top,0px) + 28px) 18px calc(env(safe-area-inset-bottom,0px) + 40px);min-height:100vh}
 main{max-width:460px;margin:0 auto}
 header{text-align:center;margin:18px 0 34px}
 h1{margin:0 0 26px;font-weight:400}
-.wd{display:block;font-family:"Cormorant Garamond","Noto Serif TC",serif;font-weight:600;font-size:clamp(24px,7vw,30px);letter-spacing:.05em;margin-bottom:40px}
-.names{display:flex;justify-content:center;align-items:center;gap:clamp(10px,3.5vw,22px);font-family:Italiana,"Noto Serif TC",serif;font-size:clamp(26px,8.2vw,40px);letter-spacing:.2em;margin-right:-.2em}
-.names svg{width:clamp(22px,6vw,32px);height:auto;flex:none;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.wd{display:block;font-family:Lora,"Noto Sans TC",serif;font-weight:500;font-size:clamp(24px,7vw,30px);letter-spacing:.06em;margin-bottom:40px}
+.names{display:flex;justify-content:center;align-items:center;gap:clamp(8px,3vw,20px)}
+.names svg{flex:none;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.nm{height:clamp(26px,9vw,44px);width:auto;stroke-width:2.2;overflow:visible}
+.hrt{width:clamp(22px,6vw,30px);height:auto;stroke-width:1.2}
 header p{margin:0;color:var(--soft);font-size:15px;letter-spacing:.08em}
 .search{display:flex;gap:8px;margin-bottom:14px}
 .search input{flex:1;min-width:0;font:inherit;font-size:17px;padding:13px 16px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
@@ -53,13 +55,28 @@ header p{margin:0;color:var(--soft);font-size:15px;letter-spacing:.08em}
 .photo{margin:0 0 18px}
 .photo img{display:block;width:100%;max-height:300px;object-fit:cover;border-radius:4px;border:6px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.2);transform:rotate(-1.5deg)}
 .fx{position:fixed;left:0;top:0;pointer-events:none;z-index:50;will-change:transform,opacity}
+.map{margin-top:34px;text-align:center}
+.mhead{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:14px;text-align:left}
+.mhead h2{margin:0;font-size:20px;font-weight:700;letter-spacing:.1em}
+.mhead p{margin:0;font-size:13px;color:var(--soft)}
+.plate{width:68px;height:68px;flex:none}
+.bow{display:block;width:92px;margin:0 auto 4px}
+.stg{font-size:12px;color:var(--soft);margin:0 0 12px;letter-spacing:.2em}
+.floor{display:grid;grid-template-columns:1fr 1fr;gap:0 18px;max-width:230px;margin:0 auto}
+.col{display:flex;flex-direction:column;gap:28px}
+.strip{width:58px;margin:0 auto;padding:0 12px;border-radius:6px;background:radial-gradient(circle,#a63a46 2.4px,transparent 2.8px) 3px 0/9px 15px repeat-y,radial-gradient(circle,#a63a46 2.4px,transparent 2.8px) calc(100% - 3px) 0/9px 15px repeat-y,linear-gradient(#8f9d78,#8f9d78) 8px 0/1.5px 100% no-repeat,linear-gradient(#8f9d78,#8f9d78) calc(100% - 8px) 0/1.5px 100% no-repeat}
+.tb{height:30px;display:grid;place-items:center;background:var(--paper);color:#2b2a26;border:1px solid #d6b9b0;font-family:Caveat,cursive;font-weight:700;font-size:20px;line-height:1}
+.tb+.tb{border-top:0}
+.tb.me{position:relative;z-index:2;background:var(--wax);color:#fff;border-color:var(--wax);transform:scale(1.2);box-shadow:0 0 0 3px var(--gold);animation:pulse 1.6s ease-in-out 3}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(168,130,58,.28)}}
+@media (prefers-reduced-motion:reduce){.tb.me{animation:none}}
 [hidden]{display:none!important}
 </style>
 </head>
 <body>
 <main>
 <header>
-  <h1><span class="wd">Wedding day</span><span class="names"><span>LUKA</span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27C6 19 3 12 8 7.500c3-2.600 6.500-1.200 8 2.500 1.500-3.700 5-5.100 8-2.500 5 4.500 2 11.500-8 19.500z"/><path d="M15 25.500C7 19 4.500 13 9 9c2.500-2 5.500-.8 7 2.800"/></svg><span>GRACE</span></span></h1>
+  <h1><span class="wd">Wedding day</span><span class="names"><svg class="nm" viewBox="0 0 224 64" role="img" aria-label="LUKA"><path d="M6 2V58H34M56 2V38C56 52 64 58 76 58C88 58 96 52 96 38V2M120 2V58M121 36L153 3M132 25C142 35 146 51 152 57C155 60 158 57 156 54M195 2L176 58M195 2C197 24 203 46 210 57C213 61 218 59 216 55C214 51 209 52 207 57"/></svg><svg class="hrt" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27C6 19 3 12 8 7.500c3-2.600 6.500-1.200 8 2.500 1.500-3.700 5-5.100 8-2.500 5 4.500 2 11.500-8 19.500z"/><path d="M15 25.500C7 19 4.500 13 9 9c2.500-2 5.500-.8 7 2.800"/></svg><svg class="nm" viewBox="0 0 280 64" role="img" aria-label="GRACE"><path d="M42 12C37 5 30 2 24 2C11 2 3 14 3 30S11 58 24 58C36 58 43 50 43 38C43 32 38 30 32 31M68 2V58M68 2H80C92 2 96 8 96 16C96 25 90 31 80 31H68M82 31C88 40 94 50 100 58C103 62 108 58 105 55M147 2L128 58M147 2C149 24 155 46 162 57C165 61 170 59 168 55C166 51 161 52 159 57M232 12C226 5 218 2 210 2C197 2 189 14 189 30C189 46 197 58 210 58C218 58 226 55 232 48M274 2H254V58H274M254 30H270"/></svg></span></h1>
   <p>輸入姓名，找到你今天的位子</p>
 </header>
 
@@ -75,7 +92,7 @@ header p{margin:0;color:var(--soft);font-size:15px;letter-spacing:.08em}
   <h2 class="name" id="gname"></h2>
   <div class="seat">
     <div><b id="gtable"></b><span>桌次</span></div>
-    <div><b id="gseat"></b><span>座位</span></div>
+    <div id="seatbox"><b id="gseat"></b><span>座位</span></div>
   </div>
   <p class="note" id="gnote"></p>
 
@@ -93,6 +110,15 @@ header p{margin:0;color:var(--soft);font-size:15px;letter-spacing:.08em}
     </div>
   </div>
 </section>
+<section class="map" aria-labelledby="mt">
+  <div class="mhead">
+    <svg class="plate" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="43" fill="none" stroke="#7d8566" stroke-width="3" stroke-dasharray="5 3.5" stroke-linecap="round"/><circle cx="50" cy="50" r="34" fill="var(--paper)" stroke="#7d8566" stroke-width="1.5"/><text x="50" y="58" text-anchor="middle" font-family="Caveat,cursive" font-weight="700" font-size="26" fill="#d23b34" transform="rotate(-12 50 50)">Seat</text></svg>
+    <div><h2 id="mt">座位圖</h2><p>查詢後，你的桌次會在圖上亮起</p></div>
+  </div>
+  <svg class="bow" viewBox="0 0 120 40" role="img" aria-label="舞台"><path d="M60 22C48 8 30 8 28 18C26 28 46 30 60 22C74 30 94 28 92 18C90 8 72 8 60 22Z" fill="#f6d4da" stroke="#d98a98" stroke-width="1.5"/><path d="M60 25c-3-3-6 0-4 3l4 4 4-4c2-3-1-6-4-3z" fill="#d23b34"/></svg>
+  <p class="stg">舞台</p>
+  <div class="floor" id="floor"></div>
+</section>
 </main>
 
 <script>
@@ -103,14 +129,8 @@ header p{margin:0;color:var(--soft);font-size:15px;letter-spacing:.08em}
    message 新人寫給此賓客的專屬悄悄話
    photo  回憶合照的圖片路徑或網址；留空 "" 則自動隱藏圖片框 */
 const GUESTS = [
-  {name:"王小明", alias:["小明","Ming"], table:"3", seat:"5", note:"靠近舞台右側", photo:"",
-   message:"小明，大學四年的宿舍夜談，是我們最珍貴的回憶。\n謝謝你一路陪著我們，今天要吃飽喝足，不准提早離席！"},
-  {name:"陳雅婷", alias:["雅婷","Tina"], table:"1", seat:"2", note:"主桌旁，方便上台致詞", photo:"photos/yating.jpg",
-   message:"雅婷，沒有你當年的那通電話，我們不會有今天。\n這一桌的位子，我們特別留給最重要的你。"},
-  {name:"林志豪", alias:["志豪"], table:"8", seat:"1", note:"", photo:"",
-   message:"志豪，謝謝你從高雄趕來！\n今晚的酒，我們陪你喝到最後一杯。"},
-  {name:"張美玲", alias:["美玲","阿姨"], table:"2", seat:"7", note:"", photo:"",
-   message:"阿姨，謝謝你從小到大的疼愛。\n今天換我們說：謝謝你，愛你。"}
+  {name:"鄭婷方", alias:["婷方"], table:"26", seat:"", note:"", photo:"",
+   message:"備婚之路有我的豬豬好親故已經太安心惹💖💖"}
 ];
 
 const $ = id => document.getElementById(id);
@@ -121,7 +141,7 @@ function search(v){
   v = norm(v); if(!v) return [];
   return GUESTS.filter(g => [g.name,...(g.alias||[])].some(n => norm(n).includes(v)));
 }
-function reset(){ $("card").hidden = true; $("picks").hidden = true; }
+function reset(){ mark(null); $("card").hidden = true; $("picks").hidden = true; }
 function run(){
   const r = search($("q").value);
   reset();
@@ -135,7 +155,7 @@ function run(){
 }
 function show(g){
   $("hint").hidden = true; $("picks").hidden = true;
-  $("gname").textContent = g.name; $("gtable").textContent = g.table; $("gseat").textContent = g.seat;
+  $("gname").textContent = g.name; $("gtable").textContent = g.table; $("gseat").textContent = g.seat || ""; $("seatbox").hidden = !g.seat;
   $("gnote").textContent = g.note || ""; $("gnote").hidden = !g.note;
   const env = $("env"); env.classList.remove("open"); env.setAttribute("aria-expanded","false");
   $("letter").classList.remove("show"); $("envlabel").hidden = false;
@@ -148,7 +168,7 @@ function show(g){
     img.onerror = () => { box.hidden = true; };
     img.src = g.photo;
   }
-  $("card").hidden = false;
+  $("card").hidden = false; mark(g.table);
   $("card").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
 }
 
@@ -179,6 +199,19 @@ $("env").addEventListener("click", () => {
   $("letter").classList.add("show");
   setTimeout(() => $("letter").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"nearest"}), 700);
 });
+[[[16,22],[23,29]],[[1,7],[8,14]]].forEach(col => {
+  const c = document.createElement("div"); c.className = "col";
+  col.forEach(([a,b]) => {
+    const s = document.createElement("div"); s.className = "strip";
+    for(let n=a;n<=b;n++){ const t = document.createElement("div"); t.className = "tb"; t.dataset.t = n; t.textContent = n; s.appendChild(t); }
+    c.appendChild(s);
+  });
+  $("floor").appendChild(c);
+});
+function mark(t){
+  document.querySelectorAll(".tb.me").forEach(e => e.classList.remove("me"));
+  const el = t && document.querySelector('.tb[data-t="'+t+'"]'); if(el) el.classList.add("me");
+}
 $("f").addEventListener("submit", e => { e.preventDefault(); run(); });
 </script>
 </body>
