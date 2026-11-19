@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="light" style="color-scheme: light;"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>婚禮相簿牆</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,500&amp;display=swap">
+<style>
+:root{--bg:#f6efe6;--fg:#3b2f2a;--card:#fffdf9;--mute:#8a7a6f;--acc:#b5654a;--shadow:rgba(60,40,30,.22);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1815;--fg:#f1e7dc;--card:#2d2622;--mute:#a8998d;--acc:#e08a6c;--shadow:rgba(0,0,0,.5);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1d1815;--fg:#f1e7dc;--card:#2d2622;--mute:#a8998d;--acc:#e08a6c;--shadow:rgba(0,0,0,.5);color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:"Noto Serif TC","PingFang TC","Microsoft JhengHei",serif;min-height:100vh}
+header{text-align:center;padding:56px 16px 44px;margin-bottom:24px;color:#2b2420;background:radial-gradient(120% 80% at 85% -10%,#fffaf2 0,transparent 55%),radial-gradient(90% 70% at 10% 110%,#e9dfd1 0,transparent 60%),linear-gradient(115deg,#f2ebe0 0%,#faf6ee 38%,#eadfce 62%,#f6f0e6 100%)}
+.hello{font-family:"Cormorant Garamond","Noto Serif TC",serif;font-style:italic;font-weight:500;font-size:clamp(20px,4vw,30px);letter-spacing:.04em;margin:0 0 clamp(28px,7vw,64px)}
+.names{display:flex;align-items:center;justify-content:center;gap:clamp(10px,3vw,40px);font-family:"Cormorant Garamond","Noto Serif TC",serif;font-weight:300;font-size:clamp(26px,7.5vw,84px);letter-spacing:.28em;margin:0;line-height:1}
+.names span{margin-right:-.28em}
+.names svg{width:.7em;height:.7em;flex:none}
+.sub{color:#7a6a5e;margin:clamp(24px,5vw,40px) 0 0;letter-spacing:.12em;font-size:14px}
+header .count{color:#a4553a}
+.count{color:var(--acc);font-size:14px;margin-top:14px}
+#admin{max-width:720px;margin:0 auto 16px;padding:12px 16px;border:1px dashed var(--acc);border-radius:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;font-size:14px}
+#admin[hidden]{display:none}
+button,.btn{font:inherit;background:var(--acc);color:#fff;border:0;border-radius:999px;padding:8px 18px;cursor:pointer}
+button.ghost{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+#status{color:var(--mute)}
+#wall{columns:3 240px;column-gap:22px;max-width:1100px;margin:0 auto;padding:16px 20px 60px}
+figure{break-inside:avoid;margin:0 0 26px;background:var(--card);padding:10px 10px 30px;box-shadow:0 6px 16px var(--shadow);transform:rotate(var(--r,0deg));transition:transform .2s;cursor:zoom-in;position:relative}
+figure:hover{transform:rotate(0) scale(1.03);z-index:2}
+figure::before{content:"";position:absolute;top:-10px;left:50%;width:70px;height:20px;margin-left:-35px;background:rgba(220,190,140,.6);transform:rotate(-2deg)}
+figure img{display:block;width:100%;height:auto;background:var(--bg)}
+.empty{text-align:center;color:var(--mute);padding:60px 20px}
+.cap{margin-top:8px;text-align:center;font-size:13px;color:var(--mute)}
+.del{position:absolute;top:4px;right:4px;width:28px;height:28px;padding:0;border-radius:50%;background:rgba(0,0,0,.6);font-size:14px;line-height:1}
+#who{font:inherit;font-size:14px;padding:7px 12px;border:1px solid var(--acc);border-radius:999px;background:var(--card);color:var(--fg);width:180px}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:10;padding:env(safe-area-inset-top,0px) 12px env(safe-area-inset-bottom,0px)}
+#lb.on{display:flex}
+#lb img{max-width:100%;max-height:92vh;object-fit:contain}
+#lb .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);width:44px;height:44px;padding:0;font-size:22px}
+#prev{left:10px}#next{right:10px}
+#bar{text-align:center;margin:0 0 4px}
+#ask{flex-basis:100%;text-align:center}
+#ask[hidden]{display:none}
+#askName{font:inherit;font-size:14px;padding:7px 12px;border:1px solid var(--acc);border-radius:999px;background:var(--card);color:var(--fg);width:150px}
+#bar[hidden],.more[hidden]{display:none}
+.more{text-align:center;padding:0 0 60px}
+figure img{min-height:140px}
+#wall.dense{columns:5;column-gap:8px}
+#wall.dense figure{padding:4px;margin:0 0 8px;transform:none;box-shadow:0 2px 6px var(--shadow)}
+#wall.dense figure::before,#wall.dense .cap{display:none}
+@media(max-width:600px){#wall.dense{columns:3;padding:12px 10px 60px}}
+</style>
+</head>
+<body>
+<header>
+  <p class="hello">Wedding day</p>
+  <h1 class="names"><span>LUKA</span><svg viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 34C8 25 4 18 6 12C8 6 16 6 20 12C24 6 32 6 34 12C36 18 32 25 20 34Z"></path><path d="M20 33C10 25 7 19 8.5 14C10 9 16 9 20 14C23 8 31 8 32 13C34 19 29 26 21 35"></path></svg><span>GRACE</span></h1>
+  <p class="sub" id="sub"></p>
+  <div class="count" id="count"></div>
+</header>
+<div id="admin" hidden="">
+  <input id="who" placeholder="上傳者名字" maxlength="20">
+  <label class="btn">＋ 上傳照片<input id="file" type="file" accept="image/*" multiple="" hidden=""></label>
+  <div id="ask" hidden=""><span id="askMsg">這批 1 張將以「匿名」上傳。</span> <input id="askName" placeholder="輸入名字" maxlength="20"> <button id="askGo">以此名字上傳</button> <button class="ghost" id="askAnon">仍以匿名上傳</button></div>
+  <span id="status"></span>
+</div>
+<div id="bar" hidden=""><button class="ghost" id="dense">▦ 大圖檢視</button></div>
+<main id="wall" class=""></main>
+<div id="more" class="more" hidden=""><button class="ghost" id="moreBtn">載入更多（還有 -40 張）</button></div>
+<div id="lb" class=""><button class="nav" id="prev" aria-label="上一張">‹</button><img alt="" src="/_blob/4707376b3849171eaf63e051c945c438"><button class="nav" id="next" aria-label="下一張">›</button></div>
+<script id="data" type="application/json">{"title":"我們的婚禮","sub":"感謝你來見證這一天","photos":[]}</script>
+<script>
+const data = JSON.parse(document.getElementById('data').textContent);
+const $ = id => document.getElementById(id);
+let cur = 0, isAdmin = false, shown = 40, dense = false;
+const PAGE = 40;
+
+function render() {
+  $('sub').textContent = data.sub;
+  $('count').textContent = data.photos.length ? data.photos.length + ' 張回憶' : '';
+  const wall = $('wall');
+  wall.innerHTML = '';
+  wall.classList.toggle('dense', dense);
+  $('bar').hidden = !data.photos.length;
+  $('more').hidden = data.photos.length <= shown;
+  $('moreBtn').textContent = '載入更多（還有 ' + (data.photos.length - shown) + ' 張）';
+  if (!data.photos.length) {
+    return;
+  }
+  data.photos.slice(0, shown).forEach((p, i) => {
+    const f = document.createElement('figure');
+    f.style.setProperty('--r', ((i * 37) % 7 - 3) * 0.7 + 'deg');
+    const img = new Image();
+    img.src = p.url; img.loading = 'lazy'; img.alt = '婚禮照片 ' + (i + 1);
+    f.append(img);
+    const cap = document.createElement('div');
+    cap.className = 'cap';
+    cap.textContent = '📷 ' + (p.name || '匿名');
+    f.append(cap);
+    if (isAdmin) {
+      const d = document.createElement('button');
+      d.className = 'del'; d.textContent = '✕'; d.title = '刪除';
+      d.onclick = async e => {
+        e.stopPropagation();
+        if (!d.dataset.arm) {
+          d.dataset.arm = '1'; d.textContent = '確定刪除？';
+          d.style.cssText = 'width:auto;padding:0 10px;border-radius:14px';
+          setTimeout(() => { if (d.isConnected) { delete d.dataset.arm; d.textContent = '✕'; d.style.cssText = ''; } }, 3000);
+          return;
+        }
+        const [gone] = data.photos.splice(i, 1);
+        render();
+        try { await save(); } catch (err) { $('status').textContent = '儲存失敗'; }
+        try { if (gone.id) { const as = await claude.use('assets'); if (as) await as.delete(gone.id); } } catch (err) {}
+      };
+      f.append(d);
+    }
+    f.onclick = () => show(i);
+    wall.append(f);
+  });
+}
+
+function loadMore() { shown += PAGE; render(); }
+$('moreBtn').onclick = loadMore;
+function setDense() { $('dense').textContent = dense ? '▦ 大圖檢視' : '⊞ 密集檢視'; }
+$('dense').onclick = () => {
+  dense = !dense;
+  try { localStorage.setItem('dense', dense ? '1' : '0'); } catch (e) {}
+  setDense(); render();
+};
+try { dense = localStorage.getItem('dense') === '1'; } catch (e) {}
+setDense();
+if ('IntersectionObserver' in window) {
+  new IntersectionObserver(es => { if (es[0].isIntersecting) loadMore(); }, { rootMargin: '400px' }).observe($('more'));
+}
+
+function show(i) {
+  const n = data.photos.length;
+  cur = (i + n) % n;
+  $('lb').querySelector('img').src = data.photos[cur].url;
+  $('lb').classList.add('on');
+}
+$('lb').onclick = e => { if (e.target.tagName !== 'BUTTON') $('lb').classList.remove('on'); };
+$('prev').onclick = () => show(cur - 1);
+$('next').onclick = () => show(cur + 1);
+document.addEventListener('keydown', e => {
+  if (!$('lb').classList.contains('on')) return;
+  if (e.key === 'Escape') $('lb').classList.remove('on');
+  if (e.key === 'ArrowLeft') show(cur - 1);
+  if (e.key === 'ArrowRight') show(cur + 1);
+});
+
+// --- owner tools ---
+function shrink(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const s = Math.min(1, 1600 / Math.max(img.width, img.height));
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+      c.toBlob(b => b ? resolve(b) : reject(new Error('convert')), 'image/jpeg', 0.85);
+    };
+    img.onerror = () => reject(new Error('load'));
+    img.src = url;
+  });
+}
+
+async function save() {
+  const a = await claude.use('artifact');
+  if (!a) { $('status').textContent = '目前無法儲存'; return; }
+  const c = document.documentElement.cloneNode(true);
+  c.querySelector('#data').textContent = JSON.stringify(data).replace(/</g, '\\u003c');
+  c.querySelector('#wall').innerHTML = '';
+  c.querySelector('#sub').textContent = '';
+  c.querySelector('#count').textContent = '';
+  c.querySelector('#wall').className = '';
+  c.querySelectorAll('style').forEach(s => { if (s.textContent.startsWith('artifact-sync')) s.remove(); });
+  c.querySelector('#status').textContent = '';
+  c.querySelector('#admin').hidden = true;
+  c.querySelector('#lb').classList.remove('on');
+  await a.publish('<!DOCTYPE html>\n' + c.outerHTML);
+}
+
+async function initAdmin() {
+  if (!window.claude || !claude.use) return;
+  try {
+    const user = await claude.use('user');
+    if (!user || !user.canEdit()) return;
+    $('admin').hidden = false;
+    isAdmin = true;
+    render();
+    const MAX = 30;
+    const doUpload = async (files, name) => {
+      const assets = await claude.use('assets');
+      if (!assets) { $('status').textContent = '無法上傳'; return; }
+      let ok = 0;
+      for (const f of files) {
+        $('status').textContent = '上傳中 ' + (ok + 1) + ' / ' + files.length;
+        try {
+          const r = await assets.upload(await shrink(f));
+          data.photos.push({ url: '/_blob/' + r.id, id: r.id, name });
+          ok++;
+        } catch (err) { console.error(err); }
+      }
+      $('status').textContent = '儲存中…';
+      try { await save(); } catch (err) { $('status').textContent = '儲存失敗，請再試一次'; }
+    };
+    let pending = null;
+    $('file').onchange = e => {
+      const files = [...e.target.files];
+      e.target.value = '';
+      if (!files.length) return;
+      if (files.length > MAX) { $('status').textContent = '一次最多 ' + MAX + ' 張（你選了 ' + files.length + ' 張），請分批上傳'; return; }
+      const name = ($('who').value || '').trim();
+      if (name) return doUpload(files, name);
+      pending = files;
+      $('askMsg').textContent = '這批 ' + files.length + ' 張將以「匿名」上傳。';
+      $('ask').hidden = false;
+      $('askName').focus();
+    };
+    const go = name => { const fs = pending; pending = null; $('ask').hidden = true; if (fs) doUpload(fs, name || '匿名'); };
+    $('askGo').onclick = () => {
+      const n = ($('askName').value || '').trim();
+      if (!n) { $('askName').focus(); return; }
+      $('who').value = n; go(n);
+    };
+    $('askAnon').onclick = () => go('匿名');
+  } catch (err) { console.error(err); }
+}
+
+render();
+initAdmin();
+</script>
+
+
+</body></html>
