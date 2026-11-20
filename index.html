@@ -55,7 +55,7 @@ header p{margin:0;color:var(--soft);font-size:15px;letter-spacing:.08em}
 .photo{margin:0 0 18px}
 .photo img{display:block;width:100%;max-height:300px;object-fit:cover;border-radius:4px;border:6px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.2);transform:rotate(-1.5deg)}
 .fx{position:fixed;left:0;top:0;pointer-events:none;z-index:50;will-change:transform,opacity}
-.map{margin-top:34px;text-align:center}
+.map{margin-top:22px;text-align:center}
 .mhead{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:14px;text-align:left}
 .mhead h2{margin:0;font-size:20px;font-weight:700;letter-spacing:.1em}
 .mhead p{margin:0;font-size:13px;color:var(--soft)}
@@ -65,42 +65,78 @@ header p{margin:0;color:var(--soft);font-size:15px;letter-spacing:.08em}
 .floor{display:grid;grid-template-columns:1fr 1fr;gap:0 18px;max-width:230px;margin:0 auto}
 .col{display:flex;flex-direction:column;gap:28px}
 .strip{width:58px;margin:0 auto;padding:0 12px;border-radius:6px;background:radial-gradient(circle,#a63a46 2.4px,transparent 2.8px) 3px 0/9px 15px repeat-y,radial-gradient(circle,#a63a46 2.4px,transparent 2.8px) calc(100% - 3px) 0/9px 15px repeat-y,linear-gradient(#8f9d78,#8f9d78) 8px 0/1.5px 100% no-repeat,linear-gradient(#8f9d78,#8f9d78) calc(100% - 8px) 0/1.5px 100% no-repeat}
-.tb{height:30px;display:grid;place-items:center;background:var(--paper);color:#2b2a26;border:1px solid #d6b9b0;font-family:Caveat,cursive;font-weight:700;font-size:20px;line-height:1}
+.tb{height:26px;display:grid;place-items:center;background:var(--paper);color:#2b2a26;border:1px solid #d6b9b0;font-family:Caveat,cursive;font-weight:700;font-size:18px;line-height:1}
 .tb+.tb{border-top:0}
-.tb.me{position:relative;z-index:2;background:var(--wax);color:#fff;border-color:var(--wax);transform:scale(1.2);box-shadow:0 0 0 3px var(--gold);animation:pulse 1.6s ease-in-out 3}
+.tb.me{position:relative;z-index:2;background:var(--wax);color:#fff;border-color:var(--wax);transform:scale(1.2);box-shadow:0 0 0 3px var(--gold);animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(168,130,58,.28)}}
 @media (prefers-reduced-motion:reduce){.tb.me{animation:none}}
+.opened{margin:26px 0 0;padding:16px 14px;border:1.5px dashed var(--line);border-radius:14px;color:var(--soft);text-align:center}
+#testbar{position:fixed;top:0;left:0;right:0;z-index:70;padding:calc(env(safe-area-inset-top,0px) + 6px) 12px 6px;text-align:center;font-size:12px;background:#fdf3c8;color:#6b5a1a;border-bottom:1px solid #e8d78a}
+body.t{padding-top:calc(env(safe-area-inset-top,0px) + 58px)}
+.modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:24px;background:rgba(20,16,12,.5)}
+.modal .box{max-width:320px;background:var(--card);border-radius:18px;padding:26px 22px 20px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.modal p{margin:0;font-size:17px;font-weight:500}
+.modal p.sub{margin-top:10px;font-size:14px;font-weight:400;color:var(--soft)}
+.tin{width:100%;margin-top:12px;font:inherit;font-size:24px;text-align:center;letter-spacing:.4em;padding:9px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);color:#2b2a26}
+.modal p.terr{margin:8px 0 0;min-height:1.5em;font-size:14px;font-weight:500;color:var(--wax)}
+.btns{display:flex;gap:10px;margin-top:12px}
+.btns button{flex:1;font:inherit;padding:11px 8px;border-radius:12px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.btns .go{background:var(--wax);border-color:var(--wax);color:#fff;font-weight:700}
+.foot{margin-top:36px;text-align:center;font-size:14px;color:var(--soft)}
+.foot p{margin:0 0 6px}
+.foot .fl{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+.foot a{padding:7px 16px;border-radius:99px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
+.foot a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.env:not(.open){animation:wig 4s ease-in-out infinite;transform-origin:50% 85%}
+.env:not(.open)::after{content:"";position:absolute;inset:0;border-radius:6px;z-index:3;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(244,214,140,.6) 50%,transparent 62%) 100% 0/300% 100% no-repeat;animation:sheen 3s ease-in-out infinite}
+.env:not(.open) .seal{animation:glow 2.4s ease-in-out infinite}
+.env:not(.open) .seal::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(255,238,190,.85) 50%,transparent 62%) 100% 0/300% 100% no-repeat;animation:sheen 3s ease-in-out .12s infinite}
+@keyframes sheen{0%{background-position:100% 0}45%,100%{background-position:0 0}}
+@keyframes wig{0%,62%,100%{transform:rotate(0)}68%{transform:rotate(-2.2deg)}74%{transform:rotate(2.2deg)}80%{transform:rotate(-1.4deg)}86%{transform:rotate(1.4deg)}92%{transform:rotate(0)}}
+@keyframes glow{0%,100%{box-shadow:0 3px 8px rgba(0,0,0,.35),inset 0 0 0 4px rgba(255,255,255,.12),0 0 5px 1px rgba(232,196,110,.2)}50%{box-shadow:0 3px 8px rgba(0,0,0,.35),inset 0 0 0 4px rgba(255,255,255,.12),0 0 18px 7px rgba(232,196,110,.6)}}
+.env-hint{display:block;margin-top:4px;font-size:14px;color:var(--soft);letter-spacing:.06em;animation:hf 2.4s ease-in-out infinite}
+@keyframes hf{50%{opacity:.5}}
+@media (prefers-reduced-motion:reduce){.env,.env::after,.env .seal,.env .seal::after,.env-hint{animation:none!important}}
 [hidden]{display:none!important}
 </style>
 </head>
 <body>
+<div id="testbar" hidden>🧪 測試模式中：信封可無限次拆開（正式網址不會顯示此列）</div>
 <main>
 <header>
-  <h1><span class="wd">Wedding day</span><span class="names"><svg class="nm" viewBox="0 0 224 64" role="img" aria-label="LUKA"><path d="M6 2V58H34M56 2V38C56 52 64 58 76 58C88 58 96 52 96 38V2M120 2V58M121 36L153 3M132 25C142 35 146 51 152 57C155 60 158 57 156 54M195 2L176 58M195 2C197 24 203 46 210 57C213 61 218 59 216 55C214 51 209 52 207 57"/></svg><svg class="hrt" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27C6 19 3 12 8 7.500c3-2.600 6.500-1.200 8 2.500 1.500-3.700 5-5.100 8-2.500 5 4.500 2 11.500-8 19.500z"/><path d="M15 25.500C7 19 4.500 13 9 9c2.500-2 5.500-.8 7 2.800"/></svg><svg class="nm" viewBox="0 0 280 64" role="img" aria-label="GRACE"><path d="M42 12C37 5 30 2 24 2C11 2 3 14 3 30S11 58 24 58C36 58 43 50 43 38C43 32 38 30 32 31M68 2V58M68 2H80C92 2 96 8 96 16C96 25 90 31 80 31H68M82 31C88 40 94 50 100 58C103 62 108 58 105 55M147 2L128 58M147 2C149 24 155 46 162 57C165 61 170 59 168 55C166 51 161 52 159 57M232 12C226 5 218 2 210 2C197 2 189 14 189 30C189 46 197 58 210 58C218 58 226 55 232 48M274 2H254V58H274M254 30H270"/></svg></span></h1>
-  <p>輸入姓名，找到你今天的位子</p>
+  <h1><span class="wd">Wedding day</span><span class="names"><svg class="nm" viewBox="0 0 224 64" role="img" aria-label="LUKA"><path d="M6 2V58H34M56 2V38C56 52 64 58 76 58C88 58 96 52 96 38V2M120 2V58M121 36L153 3M132 25C142 35 146 51 152 57C155 60 158 57 156 54M195 2L176 58M195 2L213 56C214 59 218 60 219 56M182 42C190 39 200 39 208 42"/></svg><svg class="hrt" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27C6 19 3 12 8 7.500c3-2.600 6.500-1.200 8 2.500 1.500-3.700 5-5.100 8-2.500 5 4.500 2 11.500-8 19.500z"/><path d="M15 25.500C7 19 4.500 13 9 9c2.500-2 5.500-.8 7 2.800"/></svg><svg class="nm" viewBox="0 0 280 64" role="img" aria-label="GRACE"><path d="M42 12C37 5 30 2 24 2C11 2 3 14 3 30S11 58 24 58C36 58 43 50 43 38C43 32 38 30 32 31M68 2V58M68 2H80C92 2 96 8 96 16C96 25 90 31 80 31H68M82 31C88 40 94 50 100 58C103 62 108 58 105 55M147 2L128 58M147 2L165 56C166 59 170 60 171 56M134 42C142 39 151 39 160 42M232 12C226 5 218 2 210 2C197 2 189 14 189 30C189 46 197 58 210 58C218 58 226 55 232 48M274 2H254V58H274M254 30H270"/></svg></span></h1>
+  <p>輸入姓名找到午宴座位🤍</p>
 </header>
 
 <form class="search" id="f" role="search">
   <input id="q" type="search" placeholder="請輸入賓客姓名" autocomplete="off" aria-label="賓客姓名">
   <button type="submit">查詢</button>
 </form>
-<div class="picks" id="picks" hidden></div>
-<p class="hint" id="hint">找不到名字嗎？試試只輸入姓或名，或向接待桌詢問。</p>
+<p class="hint" id="hint" hidden></p>
 
 <section class="card" id="card" hidden aria-live="polite">
-  <p class="who">歡迎你，</p>
+  <p class="who">✨Welcome✨</p>
   <h2 class="name" id="gname"></h2>
   <div class="seat">
     <div><b id="gtable"></b><span>桌次</span></div>
-    <div id="seatbox"><b id="gseat"></b><span>座位</span></div>
+    
   </div>
-  <p class="note" id="gnote"></p>
-
+  <section class="map" aria-labelledby="mt">
+  <div class="mhead">
+    <svg class="plate" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="43" fill="none" stroke="#7d8566" stroke-width="3" stroke-dasharray="5 3.5" stroke-linecap="round"/><circle cx="50" cy="50" r="34" fill="var(--paper)" stroke="#7d8566" stroke-width="1.5"/><text x="50" y="58" text-anchor="middle" font-family="Caveat,cursive" font-weight="700" font-size="26" fill="#d23b34" transform="rotate(-12 50 50)">Seat</text></svg>
+    <div><h2 id="mt">座位圖</h2><p>查詢後，你的桌次會在圖上亮起</p></div>
+  </div>
+  <svg class="bow" viewBox="0 0 120 40" aria-hidden="true"><path d="M60 22C48 8 30 8 28 18C26 28 46 30 60 22C74 30 94 28 92 18C90 8 72 8 60 22Z" fill="#f6d4da" stroke="#d98a98" stroke-width="1.5"/><path d="M60 25c-3-3-6 0-4 3l4 4 4-4c2-3-1-6-4-3z" fill="#d23b34"/></svg>
+  
+  <div class="floor" id="floor"></div>
+</section>
+  <p class="opened" id="opened" hidden>💌 這封信已經拆封過囉！</p>
   <div class="egg" id="egg" hidden>
     <button class="env" id="env" type="button" aria-expanded="false" aria-controls="letter">
       <span class="back"></span><span class="front"></span><span class="flap"></span><span class="seal">♥</span>
     </button>
     <span class="env-label" id="envlabel">給你的專屬悄悄話 ✉️</span>
+    <span class="env-hint" id="envhint">✨ 點擊拆開專屬悄悄話</span>
     <div class="letter" id="letter">
       <div><div class="paper">
         <figure class="photo" id="photoBox" hidden><img id="photo" alt="我們的回憶合照"></figure>
@@ -110,95 +146,49 @@ header p{margin:0;color:var(--soft);font-size:15px;letter-spacing:.08em}
     </div>
   </div>
 </section>
-<section class="map" aria-labelledby="mt">
-  <div class="mhead">
-    <svg class="plate" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="43" fill="none" stroke="#7d8566" stroke-width="3" stroke-dasharray="5 3.5" stroke-linecap="round"/><circle cx="50" cy="50" r="34" fill="var(--paper)" stroke="#7d8566" stroke-width="1.5"/><text x="50" y="58" text-anchor="middle" font-family="Caveat,cursive" font-weight="700" font-size="26" fill="#d23b34" transform="rotate(-12 50 50)">Seat</text></svg>
-    <div><h2 id="mt">座位圖</h2><p>查詢後，你的桌次會在圖上亮起</p></div>
-  </div>
-  <svg class="bow" viewBox="0 0 120 40" role="img" aria-label="舞台"><path d="M60 22C48 8 30 8 28 18C26 28 46 30 60 22C74 30 94 28 92 18C90 8 72 8 60 22Z" fill="#f6d4da" stroke="#d98a98" stroke-width="1.5"/><path d="M60 25c-3-3-6 0-4 3l4 4 4-4c2-3-1-6-4-3z" fill="#d23b34"/></svg>
-  <p class="stg">舞台</p>
-  <div class="floor" id="floor"></div>
-</section>
+<footer class="foot">
+  <p class="fl"><a href="https://planning.wedding/website/1205" target="_blank" rel="noopener">💒回網站💒</a></p>
+</footer>
 </main>
 
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mtext">
+  <div class="box"><p id="mtext">✨ 這封信只能拆開一次喔！確定現在要拆開嗎？</p>
+    <p class="sub">請先輸入你的桌號（兩位數字）</p>
+    <input class="tin" id="tin" type="text" inputmode="numeric" maxlength="2" autocomplete="off" aria-label="桌號">
+    <p class="terr" id="terr" role="alert"></p>
+    <div class="btns"><button type="button" id="mno">先等等</button><button type="button" id="myes" class="go">拆開信封</button></div></div>
+</div>
 <script>
-/* ====== 賓客資料：請在此編輯 ======
-   name   姓名（可加 alias 別名陣列，如暱稱）
-   table  桌次　seat 座位
-   note   選填，給賓客的備註（如：靠近舞台）
-   message 新人寫給此賓客的專屬悄悄話
-   photo  回憶合照的圖片路徑或網址；留空 "" 則自動隱藏圖片框 */
-const GUESTS = [
-  {name:"鄭婷方", alias:["婷方"], table:"26", seat:"", note:"", photo:"",
-   message:"備婚之路有我的豬豬好親故已經太安心惹💖💖"}
-];
-
+/* 名單與信件皆已加密；原始名單請見 guests.json（勿公開）*/
+const DATA = [{"i":"16ad8db5a3639f109f554af0","t":"VPMyjNh9g2IhaiUspQEz53D0F+AEDgVeoFI2cYZZ","m":"kjPZLh9UdIkkvwJkehI3/7sZ1rtlDtAMRCQIESBCfLia5pO9QcKa16KD62tCKZaIga6MGGPVSIHM+x6hT812uF0qGCL1C/rN3yo9SRkWVvGWNZorNwmjUndyNjNfBQDqsOdgCt2OFKiekXWVIL42uf6hkWL9cBn5ZhVyhbAILLChndQ+Y9P7IINLuPzsmIUIlt+8xkKMJN9ztxgHDHM31iaUzIKTLiGTPZ9j5QSpwg=="},{"i":"e7688e6fdeee57bc46f731c7","t":"Zsn4mUpxSVkv78ZSrtCsN57SI1IHbV36JcY0NatU","m":"Z5kBPey56x6XTPHAhNtSnk+zQNEV7qs4QHsEgVQ9qvxHFYr7H+LxorIqVdBXyeu9lBDcOQwL7qV/NGPjFhufsVSt8yVJxh6uvWpQvzZVPyxTuMEQzXoIBOINQfKrFv7RCFEKMveIxF1TtGX/b79O8tMeA4jbWDUF/0elk1TiNnoN3wnY0wR9"},{"i":"4ede636f8e49c3848f4d7fa7","t":"eAWPWnapC3/aDAVyXACGNct/jhqRimOUsXlSQ5Sn","m":"iyZ4wXpSgDyUEmi7fRXD7wqUyUQ+VFcEADMrUvLapbzdK6YvMprlcb7AQ+3wj3AmuLfECva2k1Dg6t6xpw/oHZ9JIRlXOwixmAuEXN5zy0hAvGVwWdoF0Jxmj5uX7ojYjHwQA03Tj14V+wg+2ULZAJIsjEiBl5eRy4s="},{"i":"92c901869790d7dfaa9f64f2","t":"YEB5l01w4u3VKNQanpEA++Cu9hHtODyK/0JHWUL0","m":"DAO6/fdCMZxciWNpEg4ajoN13LyCnhf6JGLDx5ukN2ACMqL4h+GC7n4d8JncBE1UYjl0hDrlL8VlYNQuIqoCR6mjfLBoIu+N9Oy5RrZHziDuALPa7LxCwXsdsYWANCXx6lI="},{"i":"bf7bdb3d1b3d8faa1958633e","t":"KTpTK2WZbkC2Fb6ZRrgP4OoqFdeSO35wlMPl88XX","m":"oXsJ2N0pSV57TtpUPqQlSpJuGYT9fW4bdjPFaGQ+EJIRpBZC1HnCzeOqnxVxBAynQ/HKCaASsrVpmcN6XOX4SZ0CNuG+X9ufeOdbwX3/ga2B7KRhG9p1phrSH5e7ZEETBhszqH9SOLTmTLDm4ShgfDhfJ6wF"},{"i":"7789bd783e9421c7880baea8","t":"roVL+A/VbS/8Wr04T2u5ku+dVg6TgGuJj/fF7QFh","m":"nc+ZrbbxkA6Jq2JfJglHTZspRYJjNg3Tn9j3IsfzxuGYvhBjqlHPS2d9O8W2XZGe1EkZ798/wikhmhW9Ik5xiDknH3BYVVXWW7vKdluo7r9DRsrF51ZAmeGgbX1ggS12rlkyX3Fzhf25miSLTSSIJuQBj4mzvNe+8Y6FC+/t4tRUNQU7ZEqohNyfVXAs+nP32NXbz0s="},{"i":"b26ad7fee059766d67c2b32e","t":"PTKEaZ2DLtI2moAbEloaGNziPLH9qbrMjTKMJE1B","m":"BGghhj30Zw1CPLWzeatNrCHMfjKiAopDblJ0kCHiWjd+QgFtnkEfXP+xsc4Ogvl/myenk/lw44aRyiRQyiyhZZF79rUyH3xH9sVv91h8S0qVYqyKd0ku4PvfnxG68iFgIyE1J4vHxEuS39DR61DzRKuFD5A4BLMM3/yUdVlnGA=="},{"i":"10430d302df8825526ea8081","t":"aJ/SXpM2e3LitokcDwsuXkVzbB2aOGk5vmqJWyk9","m":"M61Uv9hIYLZJlMEWTp+fG1RFDHRHlsGdHmRTD5xAiQGor0uqf1QlNLlqf3i7xs4vofembF+7JdhWOxDPVFMdL4irfcesVXFaXdWW2P7qG5L7R1b8arN3OYOyUHyE8Hp2NnlngmKblW66z4tcBxnEfe2JIHKxSCfHOjv1i64xZRijd7yun5wLvdx4b39iNfduleS/eWOpPW5OgalrwTSegd56BcA7MAOQWHoCeJRFKmdu0QKW7HhYqtXRB9upJ/TAzAu2pl4AnZ448WzN"},{"i":"340ee13f5ca076f193aeeab8","t":"LyMAu7Nh/TtXdzC1yKguQmG4+JvgDl/dPIrceudG","m":"Gm/I1DC6X2MExmSg/tNG0U7Cuig//+RTIabhQklF10IfGBpcmYOw+nGI/n1EmVA4H1b2J/cRrmq1YtH1hKhnxRPIclPr3fqCpw=="},{"i":"fd1a07fedb67e93e985ac585","t":"fEkZwnhXmsJBdpCjYKwoAf8IoqhkXNnYUsHB6czx","m":"eKpyJ1He5dWObIpCxLfFdfe3MxO8zxIbOI3dCVzNcjQfsoazChkaljT7/uk4JOxuA3fjxTimWBjV+mPh2HuM0d7ALlyCxM2DP6bDIlY0f8EfJwMYN7Xl4rIHt9kiwH3E2JDg2acIEYWRX7CU3vHpljwJp58h5CoU"},{"i":"5c4084894feb6f2458bbf455","t":"xa/I86716HWKHG7mrQZDvv2LLfHHWnsozCDNa1g8","m":"wJ/HsMJEPRILrHI+A6uEsmLoGtzga76honVpwfPnBd6t+vxCA2U9c5pynPp+2oV9loZw/f6cZcD9I4DJNRuMeFFMMwOHGvUldA=="},{"i":"64a51ad28cf257e3840b1f56","t":"THP85HPI2rPB/IgduiRS/UsS15u/Z+ttFlB8vvhb","m":"YShRmdZLtReNGuqK8plmOzBkYvAWLjinTjHSHTcWOpoEA3l9pa0ejZbn8RNsQy49L0vOtt4gaiaG491f2HBPNV+uvB5Q6q7rOg=="},{"i":"830e71f2c6e3ba4ea4b4cfc9","t":"7tgJjA9EY7KVBiaGqu1Oe1QP/k4tlU5ryyVnQq9P","m":"iTJIrTiYoLs8AF5nkcJXmQGVp8OaNrpi2WYyIqMAJZlcYOlop09T8fTS27/V735/YTmbT5KSoesL8SMU5mjX+ggAkCYM4SXbqQ=="},{"i":"e3ad254220e1673ab6197734","t":"IOeARk+zaaae3X4QE3xL62YsRpjQm+dtcBYeaPLh","m":"pNbWgo5zphXBVRazLJTba/nnS300Df0nP2CQuJCiHHSOu0zMwaTVnn2nVvtWg1b3vmb82T7OsCQfAjLo39misHjASVUUFueDmCVP996BBPDnkDwsAi2DJXaglsN21OUdY1q1I55sH+ToT+GPqaP6O9Mbmnj37Sy/pRhFlOk6aFQzERxtAdOXSulzbm9L97I="},{"i":"97bc7078232e80dead360443","t":"ovYFWlF3d2urO5jdX5C+ujLxWIzP3xSosJPsKAbi","m":"OKgSf7Oxt/LG1A3gwYPeKCGfAgD+0ZkK8VaC2FSsm5FBbkgPe2OPJmSUf6zexY/8n6//F0ILlsOPMJxLHa3CpX393MCH+QLxUA=="},{"i":"f9780e4ed121f77724aef7e4","t":"j7Fij/ohuy6YerBq8m35LTrIgFWFuGgBtFdfje3f","m":"Jc3u+hSipKQoaxb0XID+4yXva5GN9lrEx/CgD3nG+KI+eMUp0KF0prNLXagEjc7ki7kDzbMjZKeTUDAO101yB+QXxysPgKHB5S/VD3fcd5Gj0YdMLWc53YBRwnkknOiDxqjiY0wG8UvwqT/A8K9vbXuCDT74qee1ViG5qzoxEy3IVA9nwwB4z1g1RBw8PC89Eo4KA8ANPvTRubUbKF8Fa8qkwzJmuy4oqBWWATE3J6r6WI/Zh5VjfUEhqHWu8+lBJXzNx/m6ea0wgVSAwi4e+g3HdtswzTI6USO7+Zm4qEfzbkR34w=="},{"i":"3475719f20b49ab0c3e2b817","t":"FYn9kkyaL3O/VDVR2my8wQwfZNmw+WVZuSu3rvfw","m":"DVKxuQn6MqvPujGP2pHtfm9/H+6Kujz3Ub2Za/eXmBdlXpw0KuGnxWgdzXYS9l1zrwAeKIAFvu+52COSPmcG7KJOYMD/Sbk0aoslLr4LAju+gOg+hdGpDNxEA1qiQB2dRJtf8g=="},{"i":"b1b56cc5f925eb5a9c70020c","t":"5oDknA1JC40yijUX48XbVlj+kUpT5id5Q0d+rIcV","m":"ZhNbqdZon5rZKqOmjN9WQnSnyKiDM7ZzD3MIKaG14AUq7+CL6Y28lu75xPMCNzZ3buD54M62Dyb96hrIQNlxSJWg2/io/qW8QKYLe95SJdhcbjBnbGMPJfADjx8sNTjVo6Q2RTlsrjG1mQSL89WjYw0nwUWTL2+XgOI="},{"i":"1848861c4529a6e055332f90","t":"AFP6cpypDbqtCtck4TwfWl78MJaj3Xjm1QdKtoQk","m":"ym6iiiLytigNw+18bYpezkZYbF2Y8hKqmN9TOoThHrM9x4sc+U8Tgeyk2Surarslk1NE+CaBmN3kYWpm+q0zUDoVg1zmbZ+lKlGtJXfe8XgllURC7/+BP94lQSGwrlooyvVfJ71oJcefAGOdfnpQl5CmgitmmEL1GiF639jEZBXnD9UPTsqcEUeBfliz"},{"i":"cb4c97e8eed304818ccde1a7","t":"z2orG4r4z9QZCpdvJdqDFYSj0r+ANbZN4FqLauL8","m":"dPDdwZuU3gi/m+OibPuGBZg/2Tte5ZZwHqiZYegsbhtwaMa6eFrNWwVFd9lba7NxRU+NSND0PfoVRBp3rp9saurPTz3hUGtWvjdQEW9yIZWjbvLZNXO5Kk7ziqGuw3h0OUOp9zM/0FtRMiG2qTbn3SKF1Mpg7f90BnMkIlRutTmWiMzTvTuTFzeRi3fzPKfNsFDFZrlJLA=="},{"i":"91e159176c8137b1befd834a","t":"iURTKODwoyXRXQR+l7mblQ2QkSrjEi7ajkYZetsj","m":"YfvIy0vCgjvuL/hbt9nhKIZZUVyvq2/4hbTv6lgtwV2BpeV/h/+7nyKNQGtfoSJ2j9AM1180AlmAxhW+QaXv8I4Hu2XHPOKkr73vDmeoOSZq0TSn0SoQpqqKCWk2Psz6lwbHEZPhDu4S8Zf3dp6krtfcj5wp6PsyEg4occDCX5y4UsxNJP9YxoiPTIv5jp5wgJxHZSgVU6KxOckKq6Cti8D5jhh15BXhsCmZx9nCAhwlkg=="},{"i":"3014f7e65c3abd33fd97fbf1","t":"vy/2QJ53SscS4W4cNxUspLlOlk80P6dxFdGzo+/y","m":"WPHpDl7eHJYvgdTxq+iW+BAIeHxSsB0BiR5+xAXNAJssJMPKGrqFFXkGwBdBBSVFwSjtw46YvGy2/gVwlnUP7IrV9kVLqMeM7k07/YL669oXBhlnksIj+5XNVLnb36/p/l5Y9CZmRKRN84wqVNZs4YaBJCAXzet6Fgx8/Ir41uQKBCouG6fS2B3jQA3CAJ9LiE/YIA=="},{"i":"e2835591b74f9263b0fa0238","t":"PuHYMpYA0KlahwfI2He+NOS+BL6AQ+uzk4kYFJCw","m":"QsTLCTLDZ6NvbtU2/awTFGyF5u/rNu2G6ao7rDvC82kIQkGXd8mrIUAMmlkP05FU9HPbfYNHkiI9akwTUXtdsL3Xk3tRsaEpYTT839MuQRSNhsYxViGPvr/gTvBXqvA2+TQKKZjaECrJ7mZyEuzYlf2k1QYpsD45gZpdcGo53Sy4u0qsDqhYw5HwRbdnOzWNm+/L6QRdIyKxX9N6aRQ3hP5PROVOMOd5qisMicJYhBKKaaXyyLpnp0MD9dKigw29XfDnUWl7RD3K1w=="},{"i":"56378a2e41b1932f643b0914","t":"pYD/G7LgdNc3xy7TxpmHPNriL2kb4qQAAhgMPOJF","m":"uq6e4aUB1M9aQG7vUWQA1hraXdZyQfZUFgQh/3scthqaAEPyAJWO5Di2mpJ3S1UKGL8lbmW8+2hvQo/rFjSuqGzl+uornDhcFRjp5m5ABRuprBdX0oaqgpKE08oIxi4Vl/5LYdd23a0ZCPl2je6xz3w="},{"i":"0509a7e5e0fb06be11a6bf55","t":"pnHO+5iXXgxaRuScqx8T4GgMLigSz8qfDpd/TKe8","m":"Ot4MRBq23DyXQ9zK5n41TuqjO2zqhoIyKwSgOAiFeoJ73RW0Ekp7vkaZ6M4rFmR5rYPFENs3RhVzJIa+sH3SnS3JKMcjWm0PsUzgmUxsvSmsgg6xTB6IsZGt1qoh+9GF7PGyGosfKY3tOQhHeQXPfQI="},{"i":"87c3f39df529f65bd21a9d25","t":"KXrA2hxhdcXFmoKWfMG/kvD9X03wgd9N3X1iBzEH","m":"H0vrNDNosNTYejtY454xY9W68J86OSXkkrvNyUquvko2ytm6l3K0cTUM7jGdFxXBcdEb6fj8FZ7zd6KfOzo4P1NEGCVVF2hYaKT4IZ5WcJJodNDTKSFyrFJka+tTlLQvuEPGFPUYd1e/kv3PO2Ui67n+Mu3Rs1/MsA+g/H1DU11BWgImLgr5R8hYMGOs"},{"i":"ec77e7bee6a110ea95415bdf","t":"2DEvCt8KU2KzY53/IRdMZ7SA8p5cA3ci5jX3eIqw","m":"A49KDo9SOFzmpguvZ7U+Hs3Suqkj8bXyug92tbkPEcZbe4qHhSmnXLn7Jbs97KYRR5nWRzRhy19vB9/B+XUPzphgMg6d1jl009l9epP9wCK3OflQQokLjdji+lmuCTlrDI6QGlnn19Dg9AcWLpH2FqubSsqKaNO1YxE03mkGDpg8Dkqh4gQ="},{"i":"04c1fefbe40af5a606761b59","t":"gYKtcx35iTIX/Vwkc+C0H/AhH0CFOr4YgqGo05sh","m":"imE9ZDJFdoaW451QT5hNWUkn7rzp5jzgwrWeOgn0QDl7aCCKehXtTVXRuopbVNBMNPjEmpWwdUhbG1ant4owbohtOhpwFNDHJsJ4Id+ZtA7To8hJ/yHnK23BO4xEMmNrd9eMSc9BOIborgNGdWBygAblv9rcmZvMvuR1YSin5D/nYTtVRYzdpPAXqgMvCM5MrhoEcYdDIXJNgAU4"},{"i":"7974ca6aedd2b36d65b80ff3","t":"l6YA4xQiW8o11rwVjgjM6YQcKh3w4bfC2s5HWE3V","m":"iUBbqbCx+loIxDH55nWKCI1rkiGg/gWD0sDHubnUGVzQETSsu42LhrmMuK6iHS5P/MPRFsrOUtzJrMGHe42Gcjv6RpHK52kDTTJoyswm9AA="}];
 const $ = id => document.getElementById(id);
-const norm = s => s.replace(/\s+/g,"").toLowerCase();
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function search(v){
-  v = norm(v); if(!v) return [];
-  return GUESTS.filter(g => [g.name,...(g.alias||[])].some(n => norm(n).includes(v)));
+/* 測試模式：網址含 ?test=1（或 #test）才啟用；正式網址完全不顯示 */
+const TEST = (() => { try { return new URLSearchParams(location.search).get("test") === "1" || location.hash === "#test"; } catch(e){ return false; } })();
+if(TEST){ $("testbar").hidden = false; document.body.classList.add("t"); }
+
+/* 拆封紀錄（測試模式一律忽略、也不寫入） */
+const STORAGE_VERSION = "v1";  /* 正式發佈前改成 v2、v3… 即可讓所有舊的拆封紀錄失效 */
+const KEY = id => "wedding-opened-" + STORAGE_VERSION + ":" + id;
+function wasOpened(id){ if(TEST) return false; try{ return localStorage.getItem(KEY(id)) === "1"; }catch(e){ return false; } }
+function markOpened(id){ if(TEST) return; try{ localStorage.setItem(KEY(id), "1"); }catch(e){} }
+
+/* 解密工具（名單與信件在原始碼中皆為密文） */
+const SALT = new TextEncoder().encode("luka-grace-2026"), TE = new TextEncoder(), TD = new TextDecoder();
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function idOf(name){
+  const h = await crypto.subtle.digest("SHA-256", TE.encode("id|" + name));
+  return [...new Uint8Array(h)].slice(0,12).map(x => x.toString(16).padStart(2,"0")).join("");
 }
-function reset(){ mark(null); $("card").hidden = true; $("picks").hidden = true; }
-function run(){
-  const r = search($("q").value);
-  reset();
-  if(!$("q").value.trim()){ $("hint").textContent = "請先輸入姓名喔。"; return; }
-  if(r.length === 0){ $("hint").textContent = "查無此姓名，請確認名字或向接待桌詢問。"; $("hint").hidden = false; return; }
-  if(r.length === 1) return show(r[0]);
-  $("hint").textContent = "找到多位賓客，請點選你的名字：";
-  const box = $("picks"); box.innerHTML = "";
-  r.forEach(g => { const b = document.createElement("button"); b.type="button"; b.className="pick"; b.textContent=g.name; b.onclick=()=>show(g); box.appendChild(b); });
-  box.hidden = false;
-}
-function show(g){
-  $("hint").hidden = true; $("picks").hidden = true;
-  $("gname").textContent = g.name; $("gtable").textContent = g.table; $("gseat").textContent = g.seat || ""; $("seatbox").hidden = !g.seat;
-  $("gnote").textContent = g.note || ""; $("gnote").hidden = !g.note;
-  const env = $("env"); env.classList.remove("open"); env.setAttribute("aria-expanded","false");
-  $("letter").classList.remove("show"); $("envlabel").hidden = false;
-  /* 專屬彩蛋：有 message 才顯示信封 */
-  $("egg").hidden = !g.message; $("msg").textContent = g.message || "";
-  /* 照片：沒設定或載入失敗，就隱藏圖片框 */
-  const box = $("photoBox"), img = $("photo"); box.hidden = true; img.removeAttribute("src");
-  if(g.photo){
-    img.onload = () => { box.hidden = false; };
-    img.onerror = () => { box.hidden = true; };
-    img.src = g.photo;
-  }
-  $("card").hidden = false; mark(g.table);
-  $("card").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
+async function unlock(blob, pw){
+  const km = await crypto.subtle.importKey("raw", TE.encode(pw), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({name:"PBKDF2", salt:SALT, iterations:100000, hash:"SHA-256"}, km, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  const raw = b64(blob);
+  return TD.decode(await crypto.subtle.decrypt({name:"AES-GCM", iv:raw.slice(0,12)}, key, raw.slice(12)));
 }
 
-function burst(){
-  if(reduce) return;
-  const r = $("env").getBoundingClientRect(), cx = r.left + r.width/2, cy = r.top + r.height/2 - 10;
-  const items = ["♥","♥","♥","✦"], cols = ["#b23a4d","#d4566a","#d3ad63","#e9a8b3","#7fa38f"];
-  for(let i=0;i<26;i++){
-    const el = document.createElement("span"); el.className = "fx";
-    const heart = i % 3 !== 0;
-    el.textContent = heart ? items[i%items.length] : "";
-    if(!heart){ el.style.cssText = `width:7px;height:11px;background:${cols[i%cols.length]};border-radius:1px`; }
-    else { el.style.color = cols[i%cols.length]; el.style.fontSize = (12+Math.random()*10)+"px"; }
-    document.body.appendChild(el);
-    const a = Math.random()*Math.PI*2, d = 50+Math.random()*90;
-    const dx = Math.cos(a)*d, dy = Math.sin(a)*d - 50, rot = (Math.random()-.5)*540;
-    el.animate([
-      {transform:`translate(${cx}px,${cy}px) scale(.4) rotate(0)`,opacity:1},
-      {transform:`translate(${cx+dx}px,${cy+dy}px) scale(1) rotate(${rot/2}deg)`,opacity:1,offset:.45},
-      {transform:`translate(${cx+dx*1.15}px,${cy+dy+110}px) scale(.8) rotate(${rot}deg)`,opacity:0}
-    ],{duration:1300+Math.random()*600,easing:"cubic-bezier(.2,.7,.3,1)"}).onfinish = () => el.remove();
-  }
-}
-$("env").addEventListener("click", () => {
-  const env = $("env"); if(env.classList.contains("open")) return;
-  env.classList.add("open"); env.setAttribute("aria-expanded","true");
-  burst(); $("envlabel").hidden = true;
-  $("letter").classList.add("show");
-  setTimeout(() => $("letter").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"nearest"}), 700);
-});
+/* 座位圖 */
 [[[16,22],[23,29]],[[1,7],[8,14]]].forEach(col => {
   const c = document.createElement("div"); c.className = "col";
   col.forEach(([a,b]) => {
@@ -212,7 +202,87 @@ function mark(t){
   document.querySelectorAll(".tb.me").forEach(e => e.classList.remove("me"));
   const el = t && document.querySelector('.tb[data-t="'+t+'"]'); if(el) el.classList.add("me");
 }
+
+let cur = null, seq = 0;
+const NOTFOUND = "找不到名字或有任何問題，請當天現場詢問✨";
+function say(t){ const h = $("hint"); h.textContent = t; h.hidden = false; }
+async function run(){
+  const v = $("q").value.normalize("NFC").trim(), my = ++seq;
+  mark(null); $("card").hidden = true; cur = null;
+  if(!v){ say("請先輸入姓名喔。"); return; }
+  if(!(window.crypto && crypto.subtle)){ say(NOTFOUND); return; }
+  try{
+    const id = await idOf(v), rec = DATA.find(r => r.i === id);
+    if(!rec){ if(my === seq) say(NOTFOUND); return; }
+    const table = await unlock(rec.t, "n|" + v);   /* 名字不對就解不開 */
+    if(my === seq) show({name:v, table, rec});
+  }catch(e){ if(my === seq) say(NOTFOUND); }
+}
+function show(g){
+  cur = g; $("hint").hidden = true;
+  $("gname").textContent = g.name; $("gtable").textContent = g.table;
+  const done = wasOpened(g.rec.i);
+  const env = $("env"); env.classList.remove("open"); env.setAttribute("aria-expanded","false");
+  $("letter").classList.remove("show"); $("envlabel").hidden = false; $("envhint").hidden = false;
+  $("egg").hidden = done; $("opened").hidden = !done;
+  $("msg").textContent = ""; $("photoBox").hidden = true; $("photo").removeAttribute("src");
+  $("card").hidden = false; mark(g.table);
+  (document.querySelector(".tb.me") || $("card")).scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"center"});
+}
+
+/* 拆信：先確認 + 輸入桌號，桌號正確才解開信件並記錄已拆封 */
+function askOpen(){
+  $("terr").textContent = ""; $("tin").value = TEST && cur ? cur.table : "";
+  $("modal").hidden = false; $("tin").focus();
+}
+async function tryOpen(){
+  const g = cur; if(!g) return;
+  const raw = $("tin").value.replace(/\D/g,"");
+  if(!raw){ $("terr").textContent = "請先輸入桌號喔 🤍"; return; }
+  const t = String(parseInt(raw,10)); $("myes").disabled = true;
+  try{
+    const j = JSON.parse(await unlock(g.rec.m, "m|" + g.name + "|" + t));
+    $("modal").hidden = true; reveal(g, j);
+  }catch(e){ $("terr").textContent = "桌號不太對喔，請再確認一下 🤍"; }
+  $("myes").disabled = false;
+}
+function reveal(g, j){
+  markOpened(g.rec.i);
+  $("msg").textContent = j.m;
+  const box = $("photoBox"), img = $("photo"); box.hidden = true; img.removeAttribute("src");
+  if(j.p){ img.onload = () => { box.hidden = false; }; img.onerror = () => { box.hidden = true; }; img.src = j.p; }
+  const env = $("env"); env.classList.add("open"); env.setAttribute("aria-expanded","true");
+  burst(); $("envlabel").hidden = true; $("envhint").hidden = true; $("letter").classList.add("show");
+  setTimeout(() => $("letter").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"nearest"}), 700);
+}
+
+function burst(){
+  if(reduce) return;
+  const r = $("env").getBoundingClientRect(), cx = r.left + r.width/2, cy = r.top + r.height/2 - 10;
+  const cols = ["#b23a4d","#d4566a","#d3ad63","#e9a8b3","#7fa38f"];
+  for(let i=0;i<26;i++){
+    const el = document.createElement("span"); el.className = "fx";
+    if(i % 3 !== 0){ el.textContent = "♥"; el.style.color = cols[i%cols.length]; el.style.fontSize = (12+Math.random()*10)+"px"; }
+    else { el.style.cssText = `width:7px;height:11px;background:${cols[i%cols.length]};border-radius:1px`; }
+    document.body.appendChild(el);
+    const a = Math.random()*Math.PI*2, d = 50+Math.random()*90;
+    const dx = Math.cos(a)*d, dy = Math.sin(a)*d - 50, rot = (Math.random()-.5)*540;
+    el.animate([
+      {transform:`translate(${cx}px,${cy}px) scale(.4) rotate(0)`,opacity:1},
+      {transform:`translate(${cx+dx}px,${cy+dy}px) scale(1) rotate(${rot/2}deg)`,opacity:1,offset:.45},
+      {transform:`translate(${cx+dx*1.15}px,${cy+dy+110}px) scale(.8) rotate(${rot}deg)`,opacity:0}
+    ],{duration:1300+Math.random()*600,easing:"cubic-bezier(.2,.7,.3,1)"}).onfinish = () => el.remove();
+  }
+}
+
+$("env").addEventListener("click", () => { if(!$("env").classList.contains("open")) askOpen(); });
+$("mno").addEventListener("click", () => { $("modal").hidden = true; });
+$("myes").addEventListener("click", tryOpen);
+$("tin").addEventListener("keydown", e => { if(e.key === "Enter"){ e.preventDefault(); tryOpen(); } });
+document.addEventListener("keydown", e => { if(e.key === "Escape") $("modal").hidden = true; });
 $("f").addEventListener("submit", e => { e.preventDefault(); run(); });
 </script>
+
+
 </body>
 </html>
