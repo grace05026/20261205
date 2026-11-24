@@ -135,13 +135,13 @@ main{position:relative;z-index:1}
 </form>
 <p class="hint" id="hint" hidden></p>
 
-<section class="card" id="card" hidden aria-live="polite">
-  <p class="who">✨Welcome✨</p>
+<section class="card" id="card" aria-live="polite">
+  <div id="res" hidden><p class="who">✨Welcome✨</p>
   <h2 class="name" id="gname"></h2>
   <div class="seat">
     <div><b id="gtable"></b><span>桌次</span></div>
     
-  </div>
+  </div></div>
   <section class="map" aria-labelledby="mt">
   <div class="mhead">
     <svg class="plate" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="43" fill="none" stroke="#7d8566" stroke-width="3" stroke-dasharray="5 3.5" stroke-linecap="round"/><circle cx="50" cy="50" r="34" fill="var(--paper)" stroke="#7d8566" stroke-width="1.5"/><text x="50" y="58" text-anchor="middle" font-family="Caveat,cursive" font-weight="700" font-size="26" fill="#d23b34" transform="rotate(-12 50 50)">Seat</text></svg>
@@ -151,6 +151,7 @@ main{position:relative;z-index:1}
   
   <div class="floor" id="floor"></div>
 </section>
+  <div id="resb" hidden>
   <p class="opened" id="opened" hidden>💌 這封信已經拆封過囉！</p>
   <div class="egg" id="egg" hidden>
     <button class="env" id="env" type="button" aria-expanded="false" aria-controls="letter">
@@ -167,6 +168,7 @@ main{position:relative;z-index:1}
       </div></div>
     </div>
   </div>
+</div>
 </section>
 <footer class="foot">
   <p class="fl"><a href="https://planning.wedding/website/1205" target="_blank" rel="noopener">← 返回婚禮網站</a></p>
@@ -242,7 +244,7 @@ const NOTFOUND = "找不到名字或有任何問題，請當天現場詢問✨";
 function say(t){ const h = $("hint"); h.textContent = t; h.hidden = false; }
 async function run(){
   const v = $("q").value.normalize("NFC").trim(), my = ++seq;
-  mark(null); $("card").hidden = true; cur = null;
+  mark(null); $("res").hidden = true; $("resb").hidden = true; cur = null;
   if(!v){ say("請先輸入姓名喔。"); return; }
   if(!(window.crypto && crypto.subtle)){ say(NOTFOUND); return; }
   try{
@@ -260,9 +262,12 @@ function show(g){
   $("letter").classList.remove("show"); $("envlabel").hidden = false; $("envhint").hidden = false;
   $("egg").hidden = done; $("opened").hidden = !done;
   $("msg").textContent = ""; $("photoBox").hidden = true; $("photo").removeAttribute("src");
-  $("card").hidden = false; mark(g.table);
+  $("res").hidden = false; $("resb").hidden = false; mark(g.table);
   
-  (document.querySelector(".tb.me") || $("card")).scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"center"});
+  const lit = document.querySelector(".tb.me"), top = $("res").getBoundingClientRect().top + scrollY;
+  const bot = lit ? lit.getBoundingClientRect().bottom + scrollY : top;
+  const y = (bot - top < innerHeight - 60) ? top - 16 : bot - innerHeight / 2;   /* 姓名與亮燈桌號能同屏就同屏 */
+  scrollTo({top: Math.max(y,0), behavior: reduce ? "auto" : "smooth"});
 }
 
 /* 拆信：先確認 + 輸入桌號，桌號正確才解開信件並記錄已拆封 */
